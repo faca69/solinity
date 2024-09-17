@@ -49,10 +49,11 @@ export default function TokensContainer() {
     return <NoTokensFound />;
   }
 
-  const filteredTokens = tokensData?.pages.flat().filter(
-    (token: Token) =>
-      token.name.toLowerCase().includes(searchTerm.toLowerCase()) // Filter tokens based on search term
-  );
+  const filteredTokens = tokensData?.pages
+    .flat()
+    .filter((token: Token) =>
+      token.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
   return (
     <div className="flex flex-col items-center px-10 ">
@@ -60,7 +61,7 @@ export default function TokensContainer() {
         type="text"
         placeholder="Search tokens..."
         value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)} // Update search term on input change
+        onChange={(e) => setSearchTerm(e.target.value)}
         className="mb-4 p-2 border rounded"
       />
       <div className="grid gap-5  sm:grid-cols-2 lg:grid-cols-3 lg:gap-7 xl:grid-cols-4   ">
