@@ -29,7 +29,7 @@ export class TokensService {
   }
 
   async getToken(id: string): Promise<Token> {
-    return this.tokensRepository.findOneByOrFail({ id });
+    return this.tokensRepository.findOneBy({ id });
   }
 
   async createToken(body: TokenCreateDto): Promise<Token> {
