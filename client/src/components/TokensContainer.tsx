@@ -2,13 +2,14 @@
 
 import { Token } from "@/common/token.interface";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import TokensPageSkeleton from "./PageSkeleton";
-import Link from "next/link";
-import { InView } from "react-intersection-observer";
 import InfiniteScrollSpinner from "./InfiniteScrollSpinner";
 import TokenCard from "./TokenCard";
+import Link from "next/link";
+import { InView } from "react-intersection-observer";
+import TokensPageSkeleton from "./PageSkeleton";
+import NoTokensFound from "./NoTokensFound";
 
-export default function ClientTokensPage() {
+export default function TokensContainer() {
   const {
     data: tokensData,
     fetchNextPage,
@@ -42,15 +43,11 @@ export default function ClientTokensPage() {
   }
 
   if (tokensData?.pages[0].length === 0) {
-    return <div>No tokens found</div>;
+    return <NoTokensFound />;
   }
-  if (error) return <div>Error: {error.message}</div>;
+
   return (
     <div className="flex flex-col items-center px-10 ">
-      <div className="bg-emerald-700/80 h-[400px] w-[400px] blur-[400px] absolute top-[200px] left-[750px] -z-10 "></div>
-      <h1 className="text-6xl font-bold py-11 text-center ">
-        Explore Presales
-      </h1>
       <div className="grid gap-5  sm:grid-cols-2 lg:grid-cols-3 lg:gap-7 xl:grid-cols-4   ">
         {tokensData?.pages.map((page) =>
           page.map((token: Token) => (

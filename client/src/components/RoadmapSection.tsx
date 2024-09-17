@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { IconRocket, IconHandGrab, IconCoin } from "@tabler/icons-react";
+import { Rocket, Coins, HandCoins } from "lucide-react";
 
 export default function RoadmapSection() {
   return (
@@ -10,11 +10,11 @@ export default function RoadmapSection() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.1 }}
         viewport={{ once: true }}
-        className="text-[35px] sm:text-[65px] font-semibold pb-20  bg-clip-text text-transparent bg-gradient-to-b from-gray-100 to-gray-400"
+        className="text-[42px] sm:text-[65px] font-semibold   bg-clip-text text-transparent bg-gradient-to-b from-gray-100 to-gray-400 py-10 sm:py-20 "
       >
         Solinity Roadmap
       </motion.h3>
-      <div className="flex flex-col items-center w-full max-w-[950px] mx-auto space-y-12 pb-40">
+      <div className="flex flex-col items-center w-full max-w-[950px] mx-auto space-y-12 pb-16 ">
         <motion.div
           initial={{ opacity: 0, x: -150 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -22,9 +22,9 @@ export default function RoadmapSection() {
           viewport={{ once: true }}
           className="self-start max-w-sm"
         >
-          <IconRocket size={80} className="text-emerald-400 mb-4 mx-auto" />
-          <h5 className="text-3xl font-semibold mb-2 ">Successful Launch</h5>
-          <p className="text-gray-300 ">
+          <Rocket size={80} className="text-emerald-400 mb-4 mx-auto" />
+          <h5 className="text-[27px] font-semibold mb-2 ">Successful Launch</h5>
+          <p className="text-gray-300 text-xl ">
             Our first milestone: a flawless launch that ignites our community
             and sets the stage for a revolutionary future.
           </p>
@@ -33,13 +33,15 @@ export default function RoadmapSection() {
         <motion.div
           initial={{ opacity: 0, x: 150 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
           viewport={{ once: true }}
           className="self-end max-w-sm"
         >
-          <IconHandGrab size={80} className="text-emerald-400 mb-4 mx-auto " />
-          <h5 className="text-3xl font-semibold mb-2 ">Investors & Sponsors</h5>
-          <p className="text-gray-300 ">
+          <HandCoins size={80} className="text-emerald-400 mb-4 mx-auto " />
+          <h5 className="text-[27px] font-semibold mb-2 ">
+            Investors & Sponsors
+          </h5>
+          <p className="text-gray-300 text-xl ">
             Forging alliances with visionary partners to accelerate our journey
             towards a decentralized tomorrow.
           </p>
@@ -48,13 +50,13 @@ export default function RoadmapSection() {
         <motion.div
           initial={{ opacity: 0, x: -150 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
           viewport={{ once: true }}
           className="self-start max-w-sm"
         >
-          <IconCoin size={80} className="text-emerald-400 mx-auto " />
-          <h5 className="text-3xl font-semibold mb-2 ">Token Launch</h5>
-          <p className="text-gray-300 ">
+          <Coins size={80} className="text-emerald-400 mx-auto " />
+          <h5 className="text-[27px] font-semibold mb-2 ">Token Launch</h5>
+          <p className="text-gray-300 text-xl ">
             The pinnacle of our roadmap: unleashing our token to empower our
             community and reshape the digital landscape.
           </p>
