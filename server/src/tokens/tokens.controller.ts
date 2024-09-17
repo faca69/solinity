@@ -12,6 +12,7 @@ import {
   UseInterceptors,
   Bind,
   UploadedFile,
+  NotFoundException,
 } from '@nestjs/common';
 import { TokensService } from './tokens.service';
 import { TokenCreateDto } from './dto/create-token.dto';
@@ -53,8 +54,20 @@ export class TokensController {
   // * ---------------------------------------
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.tokensService.getToken(id);
+  async getToken(@Param('id') id: string) {
+    try {
+      const token = await this.tokensService.getToken(id);
+      if (!token) {
+        throw new NotFoundException('Token not found');
+      }
+      return token;
+    } catch (error) {
+      // Handle specific error for invalid UUID
+      if (error.message.includes('invalid input syntax for type uuid')) {
+        throw new NotFoundException('Token not found');
+      }
+      throw error; // Re-throw other errors
+    }
   }
 
   // * ---------------------------------------
