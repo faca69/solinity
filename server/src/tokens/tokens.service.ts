@@ -19,6 +19,7 @@ export class TokensService {
   async getTokens({ page, pageSize }: TokenQueryDto): Promise<Token[]> {
     return this.tokensRepository.find({
       order: {
+        isAdvertised: 'DESC',
         createdAt: 'DESC',
       },
 
