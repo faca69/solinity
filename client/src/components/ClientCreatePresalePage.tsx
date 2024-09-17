@@ -91,7 +91,6 @@ export default function ClientCreatePresalePage() {
     mutation.mutate(data, {
       onSuccess: (data) => {
         if (data.isAdvertised) {
-          // Redirect to the payment page with a return URL
           const returnUrl = encodeURIComponent(
             `${window.location.origin}/tokens`
           );

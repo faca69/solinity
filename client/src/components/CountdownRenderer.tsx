@@ -6,7 +6,7 @@ const countdownRenderer = ({
   completed,
 }: any) => {
   if (completed) {
-    return <h1>Released</h1>;
+    return <p>Released</p>;
   } else if (days > 1) {
     return <span>{days} days</span>;
   } else if (days === 1) {

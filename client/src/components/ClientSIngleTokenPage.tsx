@@ -1,14 +1,16 @@
 "use client";
 
-import TokenNotFoundPage from "@/app/tokens/[id]/not-found";
 import Spinner from "./Spinner";
 import { useQuery } from "@tanstack/react-query";
-import Link from "next/link";
 import { Token } from "@/common/token.interface";
-import { IconBrandTelegram, IconBrandX, IconWorld } from "@tabler/icons-react";
 import Image from "next/image";
 import ReactCountdown from "react-countdown";
-import countdownRenderer from "@/components/CountdownRenderer";
+import SingleTokenCountdownRenderer from "./SingleTokenCountdownRenderer";
+import TokenNotFoundPage from "@/app/tokens/[id]/not-found";
+import { useToast } from "@/hooks/use-toast";
+import { IconBrandTelegram, IconBrandX } from "@tabler/icons-react";
+import { Globe } from "lucide-react";
+import Link from "next/link";
 
 interface Props {
   params: {
@@ -17,6 +19,8 @@ interface Props {
 }
 
 export default function ClientSIngleTokenPage({ params: { id } }: Props) {
+  const { toast } = useToast();
+
   const { data, isLoading } = useQuery<Token>({
     queryKey: ["token", id],
     queryFn: async () => {
@@ -30,106 +34,126 @@ export default function ClientSIngleTokenPage({ params: { id } }: Props) {
   if (isLoading) return <Spinner />;
   if (!data) return <TokenNotFoundPage />;
   return (
-    <div className="min-h-screen  text-white px-4 sm:px-6 lg:px-8 py-12">
-      <div className="max-w-7xl mx-auto">
-        <header className="text-center mb-12">
-          <h1 className="text-4xl sm:text-6xl font-bold mb-4 bg-gradient-to-r from-emerald-300 to-emerald-700 bg-clip-text text-transparent">
+    <div className="min-h-screen flex flex-col text-white px-10 overflow-x-hidden">
+      {/* <div
+        className={`${
+          data.isAdvertised ? "bg-yellow-300" : "bg-emerald-700/80"
+        } h-[400px] w-[400px] blur-[400px] absolute top-[200px] left-[750px] -z-10 `}
+      ></div> */}
+
+      <div className="">
+        <header className="text-center ">
+          <h1
+            className={`text-4xl sm:text-6xl font-bold mb-4 bg-gradient-to-b ${
+              data.isAdvertised
+                ? "from-yellow-300 to-yellow-500 "
+                : "from-emerald-300 to-emerald-700 "
+            } bg-clip-text text-transparent pt-11`}
+          >
             {data?.name}
           </h1>
-          <h2 className="text-2xl sm:text-4xl font-bold bg-gradient-to-r from-gray-200 to-gray-400 bg-clip-text text-transparent">
+          <h2 className="text-2xl sm:text-4xl font-bold bg-gradient-to-r from-gray-200 to-gray-400 bg-clip-text text-transparent pb-12">
             ${data?.symbol}
           </h2>
         </header>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div className="space-y-8">
+        <div className="grid sm:grid-cols-1 lg:grid-cols-2 gap-10">
+          <div className="">
             <Image
               src={data?.image}
               alt={data?.name}
               width={500}
               height={500}
-              className="w-full max-w-[500px] h-[500px] rounded-2xl mx-auto"
+              className=" rounded-2xl mx-auto h-[500px]"
+              priority
             />
-            <div className="space-y-4">
-              {[
-                { label: "Description", value: data?.description },
-                { label: "Total Supply", value: data?.totalSupply },
-                {
-                  label: "Revoke Mint Authority",
-                  value: data?.revokeMintAuthority ? "Yes" : "No",
-                },
-                { label: "Supply Burned", value: data?.supplyBurned },
-                { label: "Use of Funds", value: data?.useOfFunds },
-              ].map(({ label, value }) => (
-                <p key={label} className="text-lg">
-                  <span className="font-semibold text-emerald-400">
-                    {label}:
-                  </span>{" "}
-                  {value}
-                </p>
-              ))}
-            </div>
           </div>
 
-          <div className="space-y-8">
-            <div className="bg-gray-800 p-6 rounded-lg">
-              <p className="text-lg mb-2">
-                <span className="font-semibold text-emerald-400">
-                  Solana Presale Address:
-                </span>
-              </p>
-              <p className="text-sm sm:text-base break-all bg-gradient-to-r from-emerald-300 to-emerald-700 bg-clip-text text-transparent">
-                {data?.solanaAddress}
-              </p>
-            </div>
-
-            <div className="flex justify-center">
-              <div className="bg-gray-800 h-48 w-48 rounded-full flex items-center justify-center border-4 border-emerald-500">
+          <div className=" ">
+            <div className="flex justify-center ">
+              <div className="bg-transparent h-[250px] w-[250px] sm:h-[500px] sm:w-[500px] rounded-full flex items-center justify-center border-[20px] border-emerald-500">
                 <ReactCountdown
                   date={data?.releaseDate}
-                  renderer={countdownRenderer}
-                  className="text-2xl font-bold text-emerald-400"
+                  renderer={SingleTokenCountdownRenderer}
+                  className="text-4xl font-bold text-emerald-400"
                 >
                   <p>Released</p>
                 </ReactCountdown>
               </div>
             </div>
-
-            <div>
-              <h3 className="text-2xl font-bold mb-4 text-center text-emerald-400">
-                Socials
-              </h3>
-              <div className="flex justify-center gap-8">
-                {data?.telegram && (
-                  <Link
-                    href={data.telegram}
-                    target="_blank"
-                    className="hover:opacity-80 transition-opacity"
-                  >
-                    <IconBrandTelegram size={50} color="#35A67F" />
-                  </Link>
-                )}
-                {data?.twitter && (
-                  <Link
-                    href={data.twitter}
-                    target="_blank"
-                    className="hover:opacity-80 transition-opacity"
-                  >
-                    <IconBrandX size={50} color="#35A67F" />
-                  </Link>
-                )}
-                {data?.website && (
-                  <Link
-                    href={data.website}
-                    target="_blank"
-                    className="hover:opacity-80 transition-opacity"
-                  >
-                    <IconWorld size={50} color="#35A67F" />
-                  </Link>
-                )}
-              </div>
-            </div>
           </div>
+        </div>
+
+        <div className="text-center">
+          <p className=" pt-24 font-bold text-3xl sm:text-5xl">
+            Solana Address
+          </p>
+          <p
+            className=" py-3 font-semibold text-xl sm:text-3xl text-emerald-400 cursor-pointer"
+            onClick={async () => {
+              await navigator.clipboard.writeText(data.solanaAddress);
+              toast({
+                description: "Copied to Clipboard",
+              });
+            }}
+          >
+            {data.solanaAddress}
+          </p>
+          <p className=" pt-10 font-bold text-3xl sm:text-5xl">Description</p>
+          <p className="py-3 font-semibold text-xl sm:text-3xl text-emerald-400">
+            {data.description}
+          </p>
+
+          <p className=" pt-10 font-bold text-3xl sm:text-5xl">Use Of Funds</p>
+          <p className="py-3 font-semibold text-xl sm:text-3xl text-emerald-400">
+            {data.useOfFunds}
+          </p>
+
+          <p className=" pt-10 font-bold text-3xl sm:text-5xl">Total Supply</p>
+          <p className="py-3 font-semibold text-xl sm:text-3xl text-emerald-400">
+            {data.totalSupply}
+          </p>
+
+          {data.supplyBurned !== 0 && (
+            <>
+              <p className=" pt-10 font-bold text-3xl sm:text-5xl">
+                Supply To Be Burned
+              </p>
+              <p className="py-3 font-semibold text-xl sm:text-3xl text-emerald-400">
+                {data.supplyBurned}
+              </p>
+            </>
+          )}
+
+          <p className=" pt-10 font-bold text-3xl sm:text-5xl">
+            Revoke Mint Authority
+          </p>
+          <p className="py-3 font-semibold text-xl sm:text-3xl text-emerald-400">
+            {data.supplyBurned ? "Yes" : "No"}
+          </p>
+
+          {(data.twitter || data.telegram || data.website) && (
+            <>
+              <p className=" pt-10 font-bold text-3xl sm:text-5xl">Socials</p>
+              <div className="flex flex-wrap justify-center py-4 gap-10 ">
+                {data.twitter && (
+                  <Link href={data.twitter}>
+                    <IconBrandX size={80} className="text-emerald-400" />
+                  </Link>
+                )}
+                {data.telegram ? (
+                  <Link href={data.telegram}>
+                    <IconBrandTelegram size={80} className="text-emerald-400" />
+                  </Link>
+                ) : null}
+                {data.website ? (
+                  <Link href={data.website}>
+                    <Globe size={80} className="text-emerald-400" />
+                  </Link>
+                ) : null}
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>

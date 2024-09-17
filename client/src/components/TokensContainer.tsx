@@ -8,8 +8,11 @@ import Link from "next/link";
 import { InView } from "react-intersection-observer";
 import TokensPageSkeleton from "./PageSkeleton";
 import NoTokensFound from "./NoTokensFound";
+import { useState } from "react"; // Add this import
 
 export default function TokensContainer() {
+  const [searchTerm, setSearchTerm] = useState(""); // Add state for search term
+
   const {
     data: tokensData,
     fetchNextPage,
@@ -46,16 +49,26 @@ export default function TokensContainer() {
     return <NoTokensFound />;
   }
 
+  const filteredTokens = tokensData?.pages.flat().filter(
+    (token: Token) =>
+      token.name.toLowerCase().includes(searchTerm.toLowerCase()) // Filter tokens based on search term
+  );
+
   return (
     <div className="flex flex-col items-center px-10 ">
+      <input
+        type="text"
+        placeholder="Search tokens..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)} // Update search term on input change
+        className="mb-4 p-2 border rounded"
+      />
       <div className="grid gap-5  sm:grid-cols-2 lg:grid-cols-3 lg:gap-7 xl:grid-cols-4   ">
-        {tokensData?.pages.map((page) =>
-          page.map((token: Token) => (
-            <Link key={token.id} href={`/tokens/${token.id}`}>
-              <TokenCard token={token} />
-            </Link>
-          ))
-        )}
+        {filteredTokens?.map((token: Token) => (
+          <Link key={token.id} href={`/tokens/${token.id}`}>
+            <TokenCard token={token} />
+          </Link>
+        ))}
       </div>
       <InView
         as="div"
