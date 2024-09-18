@@ -1,4 +1,37 @@
+"use client";
+
+import { createCharge } from "@/coinbase/chargeGenerator";
+import { Button } from "@/components/ui/button";
+import { useState, useEffect } from "react";
+
 export default function AdvertisePage() {
+  const [hostedUrl, setHostedUrl] = useState(
+    "https://api.commerce.coinbase.com/charges"
+  );
+  useEffect(() => {
+    const fetchChargeData = async () => {
+      try {
+        const chargeData = await createCharge();
+        if (chargeData && chargeData.data && chargeData.data.hosted_url) {
+          setHostedUrl(chargeData.data.hosted_url);
+        }
+      } catch (error) {
+        // Log the error response for better debugging
+        console.error(
+          "Error fetching charge data:",
+          error.response ? error.response.data : error.message
+        );
+      }
+    };
+
+    fetchChargeData();
+  }, []);
+
+  const handleClick = () => {
+    if (hostedUrl) {
+      window.location.href = hostedUrl;
+    }
+  };
   return (
     <div className="flex flex-col text-center ">
       <div className="bg-emerald-700/80 h-[400px] w-[400px] blur-[400px] absolute top-[200px] left-[750px] -z-10 "></div>
@@ -16,6 +49,10 @@ export default function AdvertisePage() {
           <p>USD Equivelant</p>
 
           <p></p>
+
+          <Button color="primary" onClick={handleClick} disabled={!hostedUrl}>
+            Pay with Crypto
+          </Button>
         </div>
       </div>
     </div>

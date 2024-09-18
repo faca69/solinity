@@ -32,7 +32,8 @@ import { IconCalendar } from "@tabler/icons-react";
 import { TimePicker } from "./ui/time-picker/time-picker";
 import { Calendar } from "./ui/calendar";
 import parseNumber from "@/common/helper-functions/parseNumber";
-import Link from "next/link";
+
+const paymentUrl = `https://commerce.coinbase.com/checkout/f6da07e7-4d24-4381-8123-4b8382da32ef`;
 
 export default function ClientCreatePresalePage() {
   const router = useRouter();
@@ -91,10 +92,6 @@ export default function ClientCreatePresalePage() {
     mutation.mutate(data, {
       onSuccess: (data) => {
         if (data.isAdvertised) {
-          const returnUrl = encodeURIComponent(
-            `${window.location.origin}/tokens`
-          );
-          const paymentUrl = `https://commerce.coinbase.com/checkout/f6da07e7-4d24-4381-8123-4b8382da32ef?returnUrl=${returnUrl}`;
           router.push(paymentUrl);
         } else {
           router.push("/tokens");
