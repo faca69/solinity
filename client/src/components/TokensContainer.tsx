@@ -8,10 +8,10 @@ import Link from "next/link";
 import { InView } from "react-intersection-observer";
 import TokensPageSkeleton from "./PageSkeleton";
 import NoTokensFound from "./NoTokensFound";
-import { useState } from "react"; // Add this import
+import { useState } from "react";
 
 export default function TokensContainer() {
-  const [searchTerm, setSearchTerm] = useState(""); // Add state for search term
+  const [searchTerm, setSearchTerm] = useState("");
 
   const {
     data: tokensData,
@@ -59,10 +59,10 @@ export default function TokensContainer() {
     <div className="flex flex-col items-center px-10 ">
       <input
         type="text"
-        placeholder="Search tokens..."
+        placeholder="Search Presales..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        className="mb-4 p-2 border rounded"
+        className="mb-20 p-3 border-2 border-gray-900 rounded-2xl bg-gray-800/50 w-[420px] font-semibold focus-visible:outline-none"
       />
       <div className="grid gap-5  sm:grid-cols-2 lg:grid-cols-3 lg:gap-7 xl:grid-cols-4   ">
         {filteredTokens?.map((token: Token) => (

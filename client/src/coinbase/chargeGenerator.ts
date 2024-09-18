@@ -1,12 +1,10 @@
-//chargeGenerator.ts
-
 const url: string = "https://api.commerce.coinbase.com/charges";
 
 //commerce.coinbase.com/checkout/f6da07e7-4d24-4381-8123-4b8382da32ef
 
 interface LocalPrice {
-  amount: string; // price of charge
-  currency: string; // currency
+  amount: string;
+  currency: string;
 }
 
 interface RequestBody {
@@ -14,18 +12,18 @@ interface RequestBody {
   pricing_type: string;
   name: string;
   description: string;
-  redirect_url?: string; // optional redirect URL
+  redirect_url?: string;
 }
 
 const requestBody: RequestBody = {
   local_price: {
-    amount: "1.50",
+    amount: "1",
     currency: "USD",
   },
   pricing_type: "fixed_price",
-  name: "Name of the charge",
-  description: "Small description",
-  redirect_url: "https:/google.com",
+  name: "Advertise",
+  description: "Advertise the Launch of your Presale",
+  redirect_url: "http://localhost:3001/tokens",
 };
 
 const payload: RequestInit = {
@@ -34,7 +32,7 @@ const payload: RequestInit = {
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",
-    "X-CC-Api-Key": process.env.COMMERCE_API_KEY as string,
+    "X-CC-Api-Key": "0592027b-ae9f-4e03-bf1e-b89ed67eb570",
   },
   body: JSON.stringify(requestBody),
 };

@@ -5,9 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 
 export default function AdvertisePage() {
-  const [hostedUrl, setHostedUrl] = useState(
-    "https://api.commerce.coinbase.com/charges"
-  );
+  const [hostedUrl, setHostedUrl] = useState("");
   useEffect(() => {
     const fetchChargeData = async () => {
       try {
@@ -16,11 +14,7 @@ export default function AdvertisePage() {
           setHostedUrl(chargeData.data.hosted_url);
         }
       } catch (error) {
-        // Log the error response for better debugging
-        console.error(
-          "Error fetching charge data:",
-          error.response ? error.response.data : error.message
-        );
+        console.error("Error fetching charge data:");
       }
     };
 
