@@ -1,13 +1,22 @@
+type Props = {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+  completed: boolean;
+};
+
 const SingleTokenCountdownRenderer = ({
   days,
   hours,
   minutes,
   seconds,
   completed,
-}: any) => {
+}: Props) => {
   if (completed) {
-    return <p className="font-bold text-5xl">Released</p>;
-  } else if (days > 1) {
+    return <span className="font-bold text-5xl">Released</span>;
+  }
+  if (days > 1) {
     return <span className="font-bold text-5xl">{days} days</span>;
   } else if (days === 1) {
     return <span className="font-bold text-5xl">{days} day</span>;

@@ -16,7 +16,6 @@ export default function TokensContainer() {
     hasNextPage,
     isFetchingNextPage,
     isLoading,
-    error,
   } = useInfiniteQuery<Token[]>({
     queryKey: ["tokens"],
     queryFn: async ({ pageParam = 1 }) => {

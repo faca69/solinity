@@ -35,7 +35,13 @@ const payload: RequestInit = {
   body: JSON.stringify(requestBody),
 };
 
-async function createCharge(): Promise<any> {
+interface ChargeResponse {
+  data: {
+    hosted_url: string;
+  };
+}
+
+async function createCharge(): Promise<ChargeResponse | undefined> {
   try {
     const response = await fetch(url, payload);
     if (!response.ok) {
@@ -44,6 +50,7 @@ async function createCharge(): Promise<any> {
     return await response.json();
   } catch (error) {
     console.error("Error creating charge:", error);
+    return undefined;
   }
 }
 

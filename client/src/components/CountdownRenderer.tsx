@@ -1,10 +1,17 @@
+type Props = {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+  completed: boolean;
+};
 const countdownRenderer = ({
   days,
   hours,
   minutes,
   seconds,
   completed,
-}: any) => {
+}: Props) => {
   if (completed) {
     return <p>Released</p>;
   } else if (days > 1) {
