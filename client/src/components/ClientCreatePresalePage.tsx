@@ -32,10 +32,33 @@ import { IconCalendar } from "@tabler/icons-react";
 import { TimePicker } from "./ui/time-picker/time-picker";
 import { Calendar } from "./ui/calendar";
 import parseNumber from "@/common/helper-functions/parseNumber";
-
-const paymentUrl = `https://commerce.coinbase.com/checkout/f6da07e7-4d24-4381-8123-4b8382da32ef`;
+import { useEffect, useState } from "react";
+import { createCharge } from "@/coinbase/chargeGenerator";
 
 export default function ClientCreatePresalePage() {
+  const [hostedUrl, setHostedUrl] = useState("");
+
+  useEffect(() => {
+    const fetchChargeData = async () => {
+      try {
+        const chargeData = await createCharge();
+        if (chargeData && chargeData.data && chargeData.data.hosted_url) {
+          setHostedUrl(chargeData.data.hosted_url);
+        }
+      } catch (error) {
+        console.error("Error fetching charge data:");
+      }
+    };
+
+    fetchChargeData();
+  }, []);
+
+  const handleClick = () => {
+    if (hostedUrl) {
+      window.location.href = hostedUrl;
+    }
+  };
+
   const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -89,18 +112,7 @@ export default function ClientCreatePresalePage() {
   if (mutation.isPending) return <Spinner />;
 
   const handleSubmit = async (data: z.infer<typeof formSchema>) => {
-    mutation.mutate(data, {
-      onSuccess: (data) => {
-        if (data.isAdvertised) {
-          router.push(paymentUrl);
-        } else {
-          router.push("/tokens");
-        }
-      },
-      onError: (error) => {
-        console.error(error);
-      },
-    });
+    mutation.mutate(data);
   };
   return (
     <div className="px-10 flex flex-col items-center overflow-x-hidden ">
@@ -419,13 +431,26 @@ export default function ClientCreatePresalePage() {
             />
           </div>
 
-          {/* <Link href="https://commerce.coinbase.com/checkout/f6da07e7-4d24-4381-8123-4b8382da32ef"> */}
-          <button className="p-[3px] relative " type="submit">
-            <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-emerald-700 rounded-lg " />
-            <div className="px-8 py-2  bg-black rounded-[6px]  relative group transition duration-200 text-white hover:bg-transparent font-bold w-full">
-              Create Presale
-            </div>
-          </button>
+          {form.watch("isAdvertised") ? (
+            <button
+              className="p-[3px] relative"
+              type="submit"
+              onClick={handleClick}
+              disabled={!hostedUrl}
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-emerald-700 rounded-lg " />
+              <div className="px-8 py-2 bg-black rounded-[6px] relative group transition duration-200 text-white hover:bg-transparent font-bold w-full">
+                Create Presale
+              </div>
+            </button>
+          ) : (
+            <button className="p-[3px] relative" type="submit">
+              <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-emerald-700 rounded-lg " />
+              <div className="px-8 py-2 bg-black rounded-[6px] relative group transition duration-200 text-white hover:bg-transparent font-bold w-full">
+                Create Presale
+              </div>
+            </button>
+          )}
         </form>
       </Form>
     </div>

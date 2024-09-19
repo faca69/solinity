@@ -8,11 +8,8 @@ import Link from "next/link";
 import { InView } from "react-intersection-observer";
 import TokensPageSkeleton from "./PageSkeleton";
 import NoTokensFound from "./NoTokensFound";
-import { useState } from "react";
-
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 export default function TokensContainer() {
-  const [searchTerm, setSearchTerm] = useState("");
-
   const {
     data: tokensData,
     fetchNextPage,
@@ -49,28 +46,46 @@ export default function TokensContainer() {
     return <NoTokensFound />;
   }
 
-  const filteredTokens = tokensData?.pages
-    .flat()
-    .filter((token: Token) =>
-      token.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+  const allTokens = tokensData?.pages.flat();
+  const upcomingTokens = allTokens?.filter(
+    (token: Token) => new Date(token.releaseDate) > new Date()
+  );
+  const releasedTokens = allTokens?.filter(
+    (token: Token) => new Date(token.releaseDate) <= new Date()
+  );
 
   return (
-    <div className="flex flex-col items-center px-10 ">
-      <input
-        type="text"
-        placeholder="Search Presales..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className="mb-20 p-3 border-2 border-gray-900 rounded-2xl bg-gray-800/50 w-[420px] font-semibold focus-visible:outline-none"
-      />
-      <div className="grid gap-5  sm:grid-cols-2 lg:grid-cols-3 lg:gap-7 xl:grid-cols-4   ">
-        {filteredTokens?.map((token: Token) => (
-          <Link key={token.id} href={`/tokens/${token.id}`}>
-            <TokenCard token={token} />
-          </Link>
-        ))}
-      </div>
+    <Tabs
+      defaultValue="upcoming"
+      className=" px-10 flex flex-col justify-center"
+    >
+      <TabsList className="max-w-[700px] bg-gray-300/20 mb-7 mx-auto flex justify-center ">
+        <TabsTrigger value="upcoming" className="mx-auto font-bold">
+          Upcoming Tokens
+        </TabsTrigger>
+        <TabsTrigger value="released" className="mx-auto font-bold">
+          Released Tokens
+        </TabsTrigger>
+      </TabsList>
+      <TabsContent value="upcoming" className="flex justify-center ">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7 xl:grid-cols-4">
+          {upcomingTokens?.map((token: Token) => (
+            <Link key={token.id} href={`/tokens/${token.id}`}>
+              <TokenCard token={token} />
+            </Link>
+          ))}
+        </div>
+      </TabsContent>
+      <TabsContent value="released" className="flex justify-center">
+        <div className="grid gap-5  sm:grid-cols-2 lg:grid-cols-3 lg:gap-7 xl:grid-cols-4">
+          {releasedTokens?.map((token: Token) => (
+            <Link key={token.id} href={`/tokens/${token.id}`}>
+              <TokenCard token={token} />
+            </Link>
+          ))}
+        </div>
+      </TabsContent>
+
       <InView
         as="div"
         onChange={(inView) => {
@@ -87,6 +102,6 @@ export default function TokensContainer() {
           <InfiniteScrollSpinner />
         </div>
       )}
-    </div>
+    </Tabs>
   );
 }

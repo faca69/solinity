@@ -1,7 +1,5 @@
 const url: string = "https://api.commerce.coinbase.com/charges";
 
-//commerce.coinbase.com/checkout/f6da07e7-4d24-4381-8123-4b8382da32ef
-
 interface LocalPrice {
   amount: string;
   currency: string;

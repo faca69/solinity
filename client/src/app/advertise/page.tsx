@@ -40,7 +40,7 @@ export default function AdvertisePage() {
       <div>
         <div>
           <p>$299</p>
-          <p>USD Equivelant</p>
+          <p>USD Equivalent</p>
 
           <p></p>
 
