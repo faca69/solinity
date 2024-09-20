@@ -11,7 +11,9 @@ interface Props {
 export async function generateMetadata({
   params: { id },
 }: Props): Promise<Metadata> {
-  const response = await fetch(`http://localhost:3000/api/tokens/${id}`);
+  const response = await fetch(
+    `https://solinity.onrender.com/api/tokens/${id}`
+  );
   const data: Token = await response.json();
 
   return {
