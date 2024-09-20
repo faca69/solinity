@@ -24,7 +24,9 @@ export default function ClientSIngleTokenPage({ params: { id } }: Props) {
   const { data, isLoading } = useQuery<Token>({
     queryKey: ["token", id],
     queryFn: async () => {
-      const response = await fetch(`http://localhost:3000/api/tokens/${id}`);
+      const response = await fetch(
+        `https://solinity.onrender.com/api/tokens/${id}`
+      );
 
       const data = await response.json();
       return data;

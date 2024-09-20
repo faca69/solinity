@@ -83,7 +83,7 @@ export default function ClientCreatePresalePage() {
 
   const mutation = useMutation({
     mutationFn: async (newToken: z.infer<typeof formSchema>) => {
-      const response = await fetch("http://localhost:3000/api/tokens", {
+      const response = await fetch("https://solinity.onrender.com/api/tokens", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
