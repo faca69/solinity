@@ -36,13 +36,7 @@ export default function ClientSIngleTokenPage({ params: { id } }: Props) {
   if (isLoading) return <Spinner />;
   if (!data) return <TokenNotFoundPage />;
   return (
-    <div className="min-h-screen flex flex-col text-white px-10 overflow-x-hidden">
-      {/* <div
-        className={`${
-          data.isAdvertised ? "bg-yellow-300" : "bg-emerald-700/80"
-        } h-[400px] w-[400px] blur-[400px] absolute top-[200px] left-[750px] -z-10 `}
-      ></div> */}
-
+    <div className="min-h-screen flex flex-col text-white px-10 ">
       <div className="">
         <header className="text-center ">
           <h1

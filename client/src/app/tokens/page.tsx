@@ -8,10 +8,9 @@ export const metadata: Metadata = {
 
 export default function TokensPage() {
   return (
-    <>
-      <div className="bg-emerald-700/80 h-[400px] w-[400px] blur-[400px] absolute top-[200px] left-[750px] -z-10 "></div>
+    <div className="">
       <CustomHeadingOne>Explore Presales</CustomHeadingOne>
       <TokensContainer />
-    </>
+    </div>
   );
 }
