@@ -17,8 +17,8 @@ export default function RoadmapCard({
   return (
     <motion.div
       key={index}
-      initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
-      whileInView={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0, y: 100 }}
+      whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.1 }}
       viewport={{ once: true }}
       className={`${index % 2 === 0 ? "self-start" : "self-end"}  max-w-sm`}
