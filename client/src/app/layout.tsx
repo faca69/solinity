@@ -3,6 +3,8 @@ import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import TanstackProvider from "../../providers/TanstackProvider";
 import Footer from "@/components/Footer";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { Inter } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
@@ -28,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} antialiased max-w-screen-2xl mx-auto bg-black bg-grid-small-gray-800 text-white flex flex-col overflow-x-hidden   `}
+        className={`${inter.className} antialiased max-w-screen-2xl mx-auto bg-black bg-grid-small-gray-800 text-white flex flex-col overflow-x-hidden`}
       >
         <TanstackProvider>
           <Navbar />
@@ -36,6 +38,8 @@ export default function RootLayout({
           {children}
           <Toaster />
           <Footer />
+          <Analytics />
+          <SpeedInsights />
         </TanstackProvider>
       </body>
     </html>
