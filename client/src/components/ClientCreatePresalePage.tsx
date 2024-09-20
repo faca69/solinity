@@ -34,6 +34,7 @@ import { Calendar } from "./ui/calendar";
 import parseNumber from "@/common/helper-functions/parseNumber";
 import { useEffect, useState } from "react";
 import { createCharge } from "@/coinbase/chargeGenerator";
+import CustomHeadingOne from "./CustomHeadingOne";
 
 export default function ClientCreatePresalePage() {
   const [hostedUrl, setHostedUrl] = useState("");
@@ -118,9 +119,7 @@ export default function ClientCreatePresalePage() {
     <div className="px-10 flex flex-col items-center overflow-x-hidden ">
       <div className="bg-emerald-700/70 h-[400px] w-[400px] blur-[400px] absolute top-[200px] left-[750px] -z-10 "></div>
 
-      <h1 className="text-6xl font-bold py-11 text-center bg-gradient-to-b from-gray-100 to-gray-200 bg-clip-text text-transparent">
-        Create Presale
-      </h1>
+      <CustomHeadingOne>Create Presale</CustomHeadingOne>
 
       <Form {...form}>
         <form

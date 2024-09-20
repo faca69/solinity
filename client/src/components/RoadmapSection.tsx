@@ -42,7 +42,7 @@ export default function RoadmapSection() {
         viewport={{ once: true }}
         className="text-[42px] sm:text-[65px] font-semibold   bg-clip-text text-transparent bg-gradient-to-b from-gray-100 to-gray-400 py-10 sm:py-20 "
       >
-        Solinity Roadmap
+        Roadmap
       </motion.h3>
       <div className="flex flex-col items-center w-full max-w-[950px] mx-auto space-y-12 pb-16 ">
         {roadmapContent.map((content, index) => (
