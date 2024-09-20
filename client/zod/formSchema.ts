@@ -38,11 +38,3 @@ export const formSchema = z.object({
   twitter: z.string().optional(),
   telegram: z.string().optional(),
 });
-
-//   image: z
-//     .any()
-//     .refine((files) => files?.length === 1, "Image is required.")
-//     .refine(
-//       (files) => files[0]?.size <= 5 * 1024 * 1024,
-//       "Image must be less than 5MB."
-//     ),

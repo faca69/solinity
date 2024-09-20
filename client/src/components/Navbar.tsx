@@ -14,10 +14,6 @@ export function Navbar() {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
 
-  // const isValidPath = navLinks.some(
-  //   (link) => `/${link.toLowerCase().replace(/ /g, "-")}` === pathname
-  // );
-
   if (isHomePage) {
     return null;
   }
