@@ -54,53 +54,55 @@ export default function TokensContainer() {
   );
 
   return (
-    <Tabs
-      defaultValue="upcoming"
-      className=" px-10 flex flex-col justify-center"
-    >
-      <TabsList className="max-w-[700px] bg-gray-300/20 mb-7 mx-auto flex justify-center ">
-        <TabsTrigger value="upcoming" className="mx-auto font-bold">
-          Upcoming Tokens
-        </TabsTrigger>
-        <TabsTrigger value="released" className="mx-auto font-bold">
-          Released Tokens
-        </TabsTrigger>
-      </TabsList>
-      <TabsContent value="upcoming" className="flex justify-center ">
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7 xl:grid-cols-4">
-          {upcomingTokens?.map((token: Token) => (
-            <Link key={token.id} href={`/tokens/${token.id}`}>
-              <TokenCard token={token} />
-            </Link>
-          ))}
-        </div>
-      </TabsContent>
-      <TabsContent value="released" className="flex justify-center">
-        <div className="grid gap-5  sm:grid-cols-2 lg:grid-cols-3 lg:gap-7 xl:grid-cols-4">
-          {releasedTokens?.map((token: Token) => (
-            <Link key={token.id} href={`/tokens/${token.id}`}>
-              <TokenCard token={token} />
-            </Link>
-          ))}
-        </div>
-      </TabsContent>
+    <div className="">
+      <Tabs
+        defaultValue="upcoming"
+        className=" px-10 flex flex-col justify-center "
+      >
+        <TabsList className="max-w-[700px] bg-gray-300/20 mb-7 mx-auto flex justify-center ">
+          <TabsTrigger value="upcoming" className="mx-auto font-bold">
+            Upcoming Tokens
+          </TabsTrigger>
+          <TabsTrigger value="released" className="mx-auto font-bold">
+            Released Tokens
+          </TabsTrigger>
+        </TabsList>
+        <TabsContent value="upcoming" className="flex justify-center ">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7 xl:grid-cols-4">
+            {upcomingTokens?.map((token: Token) => (
+              <Link key={token.id} href={`/tokens/${token.id}`}>
+                <TokenCard token={token} />
+              </Link>
+            ))}
+          </div>
+        </TabsContent>
+        <TabsContent value="released" className="flex justify-center">
+          <div className="grid gap-5  sm:grid-cols-2 lg:grid-cols-3 lg:gap-7 xl:grid-cols-4">
+            {releasedTokens?.map((token: Token) => (
+              <Link key={token.id} href={`/tokens/${token.id}`}>
+                <TokenCard token={token} />
+              </Link>
+            ))}
+          </div>
+        </TabsContent>
 
-      <InView
-        as="div"
-        onChange={(inView) => {
-          if (inView && hasNextPage && !isFetchingNextPage) {
-            fetchNextPage();
-          }
-        }}
-        triggerOnce={false}
-        threshold={1}
-        className="h-1"
-      />
-      {isFetchingNextPage && (
-        <div className="flex justify-center my-8">
-          <InfiniteScrollSpinner />
-        </div>
-      )}
-    </Tabs>
+        <InView
+          as="div"
+          onChange={(inView) => {
+            if (inView && hasNextPage && !isFetchingNextPage) {
+              fetchNextPage();
+            }
+          }}
+          triggerOnce={false}
+          threshold={1}
+          className="h-1"
+        />
+        {isFetchingNextPage && (
+          <div className="flex justify-center my-8">
+            <InfiniteScrollSpinner />
+          </div>
+        )}
+      </Tabs>
+    </div>
   );
 }

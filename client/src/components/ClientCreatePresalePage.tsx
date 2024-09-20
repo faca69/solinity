@@ -116,9 +116,7 @@ export default function ClientCreatePresalePage() {
     mutation.mutate(data);
   };
   return (
-    <div className="px-10 flex flex-col items-center overflow-x-hidden ">
-      <div className="bg-emerald-700/70 h-[400px] w-[400px] blur-[400px] absolute top-[200px] left-[750px] -z-10 "></div>
-
+    <div className="px-10 flex flex-col items-center ">
       <CustomHeadingOne>Create Presale</CustomHeadingOne>
 
       <Form {...form}>
