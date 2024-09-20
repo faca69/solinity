@@ -20,7 +20,7 @@ export default function TokensContainer() {
     queryKey: ["tokens"],
     queryFn: async ({ pageParam = 1 }) => {
       const response = await fetch(
-        `http://localhost:3000/api/tokens?page=${pageParam}&pageSize=12`
+        `https://solinity.onrender.com/api/tokens?page=${pageParam}&pageSize=12`
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");

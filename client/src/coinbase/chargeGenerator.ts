@@ -21,7 +21,7 @@ const requestBody: RequestBody = {
   pricing_type: "fixed_price",
   name: "Advertise",
   description: "Advertise the Launch of your Presale",
-  redirect_url: "http://localhost:3001/tokens",
+  redirect_url: "https://www.solinity.xyz/tokens",
 };
 
 const payload: RequestInit = {
