@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} antialiased max-w-screen-2xl mx-auto bg-black bg-grid-small-[#042612] text-white flex flex-col overflow-x-hidden`}
+        className={`${inter.className} antialiased max-w-screen-2xl mx-auto bg-black bg-grid-small-[#010f07] text-white flex flex-col overflow-x-hidden`}
       >
         <TanstackProvider>
           <Navbar />
