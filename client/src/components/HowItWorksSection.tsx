@@ -54,6 +54,7 @@ export default function HowItWorksSection() {
       >
         {hiwContent.map((content, index) => (
           <HiwCard
+          key={index}
             index={index}
             icon={content.icon}
             title={content.title}

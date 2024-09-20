@@ -43,6 +43,7 @@ export function FeaturesSection() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mx-auto gap-[55px] pb-16">
         {features.map((feature, index) => (
           <FeatureCard
+            key={index}
             index={index}
             icon={feature.icon}
             title={feature.title}

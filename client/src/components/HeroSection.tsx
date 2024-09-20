@@ -24,7 +24,7 @@ export default function HeroSection() {
           Solinity
         </motion.h1>
 
-        <motion.p
+        <motion.h2
           initial={{ opacity: 0, y: -10 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
@@ -33,7 +33,7 @@ export default function HeroSection() {
           bg-clip-text text-transparent bg-gradient-to-b from-gray-100 to-gray-300 pt-2 mb-10"
         >
           The ultimate presale platform for your tokens
-        </motion.p>
+        </motion.h2>
 
         <motion.div
           initial={{ opacity: 0, y: -10 }}

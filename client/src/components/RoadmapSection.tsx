@@ -47,6 +47,7 @@ export default function RoadmapSection() {
       <div className="flex flex-col items-center w-full max-w-[950px] mx-auto space-y-12 pb-16 ">
         {roadmapContent.map((content, index) => (
           <RoadmapCard
+            key={index}
             index={index}
             icon={content.icon}
             title={content.title}
