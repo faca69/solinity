@@ -39,17 +39,4 @@ export class TokensService {
 
     return this.tokensRepository.save(newToken);
   }
-
-  // async findOne(id: string): Promise<Token> {
-  //   // Add a check to ensure the id is a valid UUID
-  //   // if (!isUUID(id)) {
-  //   //   throw new BadRequestException('Invalid UUID format');
-  //   // }
-
-  //   // const token = await this.tokensRepository.findOne({ where: { id } });
-  //   // if (!token) {
-  //   //   throw new NotFoundException(`Token with ID "${id}" not found`);
-  //   // }
-  //   // return token;
-  // }
 }
