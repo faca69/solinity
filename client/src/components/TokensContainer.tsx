@@ -67,10 +67,7 @@ export default function TokensContainer() {
             Released Tokens
           </TabsTrigger>
         </TabsList>
-        <TabsContent
-          value="upcoming"
-          className="flex justify-center min-h-[300px]"
-        >
+        <TabsContent value="upcoming" className="flex justify-center ">
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7 xl:grid-cols-4">
             {upcomingTokens?.map((token: Token) => (
               <Link key={token.id} href={`/tokens/${token.id}`}>
@@ -79,12 +76,7 @@ export default function TokensContainer() {
             ))}
           </div>
         </TabsContent>
-        <TabsContent
-          value="released"
-          className="flex justify-center min-h-[300px]"
-        >
-          {" "}
-          {/* Set a minimum height */}
+        <TabsContent value="released" className="flex justify-center">
           <div className="grid gap-5  sm:grid-cols-2 lg:grid-cols-3 lg:gap-7 xl:grid-cols-4">
             {releasedTokens?.map((token: Token) => (
               <Link key={token.id} href={`/tokens/${token.id}`}>

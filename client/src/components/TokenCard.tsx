@@ -9,7 +9,7 @@ interface TokenCardProps {
 export default function TokenCard({ token }: TokenCardProps) {
   return (
     <div
-      className={`p-6 rounded-2xl bg-gradient-to-br duration-300 transform hover:-translate-y-1 flex flex-col h-full w-[280px] ${
+      className={`p-6 rounded-2xl bg-gradient-to-br flex flex-col h-full w-[280px] ${
         token.isAdvertised
           ? "shadow-yellow-300/50 shadow-inner from-yellow-300/40 to-transparent"
           : "shadow-emerald-800/40 shadow-inner from-gray-900/80 to-transparent"
