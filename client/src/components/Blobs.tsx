@@ -14,6 +14,9 @@ export default function Blobs() {
 
       {/* tokens page blob */}
       <div className="bg-emerald-700/80 h-[400px] w-[400px] blur-[400px] absolute top-[200px] left-[750px] -z-10  "></div>
+
+      {/* advertise page blob */}
+      <div className="bg-emerald-700/80 h-[400px] w-[400px] blur-[400px] absolute top-[200px] left-[750px] -z-10 "></div>
     </div>
   );
 }
