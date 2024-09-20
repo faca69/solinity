@@ -3,15 +3,10 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
-  Delete,
   UsePipes,
   ValidationPipe,
   Query,
-  UseInterceptors,
-  Bind,
-  UploadedFile,
   NotFoundException,
 } from '@nestjs/common';
 import { TokensService } from './tokens.service';
@@ -22,11 +17,9 @@ import {
   ApiCreatedResponse,
   ApiOkResponse,
   ApiOperation,
-  ApiParam,
   ApiTags,
 } from '@nestjs/swagger';
 import { TokenQueryDto } from './dto/token-query.dto';
-import { FileInterceptor } from '@nestjs/platform-express/multer';
 
 @UsePipes(
   new ValidationPipe({
@@ -62,11 +55,10 @@ export class TokensController {
       }
       return token;
     } catch (error) {
-      // Handle specific error for invalid UUID
       if (error.message.includes('invalid input syntax for type uuid')) {
         throw new NotFoundException('Token not found');
       }
-      throw error; // Re-throw other errors
+      throw error;
     }
   }
 

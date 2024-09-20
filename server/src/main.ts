@@ -6,15 +6,13 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // Increase the payload size limit for JSON bodies
   app.use(bodyParser.json({ limit: '50mb' }));
-  // Increase the payload size limit for URL-encoded bodies
   app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
   app.setGlobalPrefix('/api');
 
   app.enableCors({
-    origin: 'http://localhost:3001',
+    origin: 'https://www.solinity.xyz',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
   });
