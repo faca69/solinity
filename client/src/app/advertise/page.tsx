@@ -114,7 +114,7 @@ export default function AdvertisePage() {
 
           <p className="font-normal text-gray-400 text-2xl max-w-sm  mx-auto py-5">
             Secure the top spot in our presale listings and dramatically
-            increase your token's exposure!
+            increase your presale&appos;s exposure!
           </p>
         </div>
 
