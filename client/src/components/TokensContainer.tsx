@@ -7,7 +7,6 @@ import TokenCard from "./TokenCard";
 import Link from "next/link";
 import { InView } from "react-intersection-observer";
 import TokensPageSkeleton from "./PageSkeleton";
-import NoTokensFound from "./NoTokensFound";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 export default function TokensContainer() {
   const {
