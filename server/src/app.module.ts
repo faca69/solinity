@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './database/database.module';
 import { TokensModule } from './tokens/tokens.module';
+import { ScheduleModule } from '@nestjs/schedule';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
   imports: [
@@ -10,6 +12,8 @@ import { TokensModule } from './tokens/tokens.module';
     }),
     DatabaseModule,
     TokensModule,
+    ScheduleModule.forRoot(),
+    HttpModule,
   ],
   controllers: [],
   providers: [],
