@@ -60,7 +60,7 @@ export default function ClientSIngleTokenPage({ params: { id } }: Props) {
               alt={data?.name}
               width={500}
               height={500}
-              className=" rounded-2xl mx-auto h-[200px]"
+              className=" rounded-2xl mx-auto h-[200px] w-[200px]"
               priority
             />
           </div>
