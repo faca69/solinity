@@ -181,9 +181,12 @@ export default function AdvertisePage() {
           Feel free to donate to the Devs, We will appreciate it a lot! Plus it
           will cover costs.
         </p>
-        <img
+        <Image
           src="https://utfs.io/f/XKop28EcnWa2S1KuxhiqQ0nDkmJFc6yEePZi1VrUlMvLgKGX"
           className="h-[200px] w-[200px] rounded-xl mx-auto my-10"
+          alt="solana address"
+          width={200}
+          height={200}
         />
       </div>
     </div>

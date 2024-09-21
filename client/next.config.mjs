@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["unchainedcrypto.com"], // Add this line
+    domains: ["unchainedcrypto.com", "utfs.io"],
   },
 };
 
