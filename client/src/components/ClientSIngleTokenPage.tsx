@@ -38,7 +38,7 @@ export default function ClientSIngleTokenPage({ params: { id } }: Props) {
   return (
     <div className="min-h-screen flex flex-col text-white px-10 ">
       <div className="">
-        <header className="text-center ">
+        <header className="text-center">
           <h1
             className={`text-4xl sm:text-6xl font-bold mb-4 bg-gradient-to-b ${
               data.isAdvertised
@@ -60,7 +60,7 @@ export default function ClientSIngleTokenPage({ params: { id } }: Props) {
               alt={data?.name}
               width={500}
               height={500}
-              className=" rounded-2xl mx-auto h-[250px] w-[250px]"
+              className=" rounded-2xl mx-auto h-[250px] w-[250px] sm:h-[500px] sm:w-[500px]"
               priority
             />
           </div>
