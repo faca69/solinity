@@ -41,10 +41,6 @@ export default function TokensContainer() {
     return <TokensPageSkeleton />;
   }
 
-  if (tokensData?.pages[0].length === 0) {
-    return <NoTokensFound />;
-  }
-
   const allTokens = tokensData?.pages.flat();
   const upcomingTokens = allTokens?.filter(
     (token: Token) => new Date(token.releaseDate) > new Date()
@@ -68,22 +64,30 @@ export default function TokensContainer() {
           </TabsTrigger>
         </TabsList>
         <TabsContent value="upcoming" className="flex mx-auto ">
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7 xl:grid-cols-4">
-            {upcomingTokens?.map((token: Token) => (
-              <Link key={token.id} href={`/tokens/${token.id}`}>
-                <TokenCard token={token} />
-              </Link>
-            ))}
-          </div>
+          {upcomingTokens?.length === 0 ? (
+            <div className="text-center">No upcoming tokens</div>
+          ) : (
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7 xl:grid-cols-4">
+              {upcomingTokens?.map((token: Token) => (
+                <Link key={token.id} href={`/tokens/${token.id}`}>
+                  <TokenCard token={token} />
+                </Link>
+              ))}
+            </div>
+          )}
         </TabsContent>
         <TabsContent value="released" className="flex mx-auto">
-          <div className="grid gap-5  sm:grid-cols-2 lg:grid-cols-3 lg:gap-7 xl:grid-cols-4">
-            {releasedTokens?.map((token: Token) => (
-              <Link key={token.id} href={`/tokens/${token.id}`}>
-                <TokenCard token={token} />
-              </Link>
-            ))}
-          </div>
+          {releasedTokens?.length === 0 ? (
+            <div className="text-center">No released tokens</div>
+          ) : (
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7 xl:grid-cols-4">
+              {releasedTokens?.map((token: Token) => (
+                <Link key={token.id} href={`/tokens/${token.id}`}>
+                  <TokenCard token={token} />
+                </Link>
+              ))}
+            </div>
+          )}
         </TabsContent>
 
         <InView
