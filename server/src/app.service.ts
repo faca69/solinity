@@ -9,15 +9,11 @@ export class AppService {
   constructor(private readonly httpService: HttpService) {}
 
   @Cron('*/13 * * * *')
-  handleCron() {
-    this.logger.log('Running every 13 minutes...');
-    this.httpService.get('http://solinity/xyz').subscribe({
-      next: (response) => {
-        this.logger.log(`Response received: ${response.data}`);
-      },
-      error: (err) => {
-        this.logger.error('Error making request:', err);
-      },
+  pingServer() {
+    this.logger.log('Pinging the server to keep it awake...');
+    this.httpService.get('https://solinity.onrender.com/api/tokens').subscribe({
+      next: (response) => this.logger.log('Ping successful', response.status),
+      error: (err) => this.logger.error('Ping failed', err),
     });
   }
 }

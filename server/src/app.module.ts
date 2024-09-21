@@ -4,6 +4,7 @@ import { DatabaseModule } from './database/database.module';
 import { TokensModule } from './tokens/tokens.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { HttpModule } from '@nestjs/axios';
+import { AppService } from './app.service';
 
 @Module({
   imports: [
@@ -16,6 +17,6 @@ import { HttpModule } from '@nestjs/axios';
     HttpModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [AppService],
 })
 export class AppModule {}
