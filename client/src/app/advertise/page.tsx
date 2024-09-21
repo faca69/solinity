@@ -1,4 +1,3 @@
-import TokenCard from "@/components/TokenCard";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Metadata } from "next";
 import Image from "next/image";
