@@ -61,10 +61,10 @@ export default function TokensContainer() {
       >
         <TabsList className="max-w-[700px] bg-gray-300/20 mb-7 mx-auto flex justify-center ">
           <TabsTrigger value="upcoming" className="mx-auto font-bold">
-            Upcoming Tokens
+            Upcoming
           </TabsTrigger>
           <TabsTrigger value="released" className="mx-auto font-bold">
-            Released Tokens
+            Released
           </TabsTrigger>
         </TabsList>
         <TabsContent value="upcoming" className="flex mx-auto ">
