@@ -7,6 +7,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Advertise",
@@ -19,7 +20,7 @@ export default function AdvertisePage() {
         Boost Your Presale&apos;s Visibility!
       </h1>
 
-      <h2 className="text-4xl font-semibold bg-gradient-to-b from-gray-100 to-gray-300 bg-clip-text text-transparent pb-12">
+      <h2 className="text-4xl font-semibold bg-gradient-to-b from-gray-100 to-gray-300 bg-clip-text text-transparent pb-16">
         Get your presale featured at the top of the list.
       </h2>
 
@@ -111,24 +112,28 @@ export default function AdvertisePage() {
               </div>
             </TabsContent>
           </Tabs>
-
-          <p className="font-normal text-gray-400 text-2xl max-w-sm  mx-auto py-5">
-            Secure the top spot in our presale listings and dramatically
-            increase your presale&appos;s exposure!
-          </p>
         </div>
 
-        <div className="py-20 lg:py-8">
-          <p className="text-[60px] sm:text-[70px] lg:text-[85px] font-bold text-red-600  line-through text-center ">
+        <div className="">
+          <p className="font-semibold text-4xl pb-5">Limited TIme Offer!</p>
+          <p className="font-semibold text-xl text-gray-200">Standard Price</p>
+
+          <p className="text-[70px]  font-bold text-red-500  line-through text-center  ">
             $699
           </p>
-          <p className="text-[100px]  lg:text-[170px] font-bold bg-gradient-to-b from-yellow-200 to-yellow-600 bg-clip-text text-transparent text-center">
+          <p className="font-semibold text-4xl">Discounted Price</p>
+
+          <p className="text-[100px]  lg:text-[150px] font-bold bg-gradient-to-b from-yellow-200 to-yellow-600 bg-clip-text text-transparent text-center">
             $299
           </p>
-
-          <p className="font-normal text-gray-100 text-2xl max-w-sm  mx-auto">
-            Limited discount for 30 days, Celebrating our launch
-          </p>
+          <Link href="create-presale">
+            <button className="p-[3px] relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-yellow-700 rounded-lg" />
+              <div className="px-8 py-2  bg-black rounded-[6px]  relative group transition duration-200 text-white hover:bg-transparent font-semibold">
+                Create Presale
+              </div>
+            </button>
+          </Link>
         </div>
       </div>
 
