@@ -428,16 +428,14 @@ export default function ClientCreatePresalePage() {
             />
           </div>
 
-          {[
-            "isAdvertised",
-            "name",
-            "symbol",
-            "image",
-            "description",
-            "totalSupply",
-            "useOfFunds",
-            "solanaAddress",
-          ].every((field) => form.watch(field)) ? (
+          {form.watch("isAdvertised") &&
+          form.watch("name") &&
+          form.watch("symbol") &&
+          form.watch("image") &&
+          form.watch("description") &&
+          form.watch("totalSupply") &&
+          form.watch("useOfFunds") &&
+          form.watch("solanaAddress") ? (
             <button
               className="p-[3px] relative"
               type="submit"
