@@ -119,15 +119,15 @@ export default function ClientCreatePresalePage() {
   if (mutation.isPending) return <Spinner />;
 
   return (
-    <div className="px-10 flex flex-col items-center">
+    <div className="px-10 flex flex-col items-center ">
       <CustomHeadingOne>Create Presale</CustomHeadingOne>
 
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(handleSubmit)}
-          className="p-8 mb-10 rounded-2xl bg-gradient-to-br from-gray-900/60 to-transparent flex flex-col h-full shadow-emerald-700/70 shadow-inner w-full"
+          className="p-8 mb-10  rounded-2xl bg-gradient-to-br from-gray-900/60 to-transparent flex flex-col h-full shadow-emerald-700/70 shadow-inner w-full"
         >
-          <div className="grid grid-cols-1 gap-x-10 lg:grid-cols-2">
+          <div className="  grid grid-cols-1 gap-x-10 lg:grid-cols-2 ">
             <div>
               <FormField
                 control={form.control}
@@ -326,95 +326,110 @@ export default function ClientCreatePresalePage() {
                           </Button>
                         </FormControl>
                       </PopoverTrigger>
-                      <PopoverContent className="w-auto p-0">
+                      <PopoverContent className="w-auto p-0" align="center">
                         <Calendar
                           mode="single"
                           selected={field.value}
-                          onSelect={(date) => {
-                            if (date) field.onChange(date);
-                          }}
+                          onSelect={field.onChange}
+                          disabled={(date) => date < new Date()}
                           initialFocus
                         />
-                        <TimePicker
-                          selected={field.value}
-                          onChange={(time) => {
-                            if (field.value) {
-                              const newDate = new Date(field.value);
-                              newDate.setHours(time.getHours());
-                              newDate.setMinutes(time.getMinutes());
-                              field.onChange(newDate);
-                            }
-                          }}
-                        />
+
+                        <div className="p3 border-t border-border">
+                          <TimePicker
+                            date={field.value}
+                            setDate={field.onChange}
+                          />
+                        </div>
                       </PopoverContent>
                     </Popover>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="website"
+                render={({ field }) => (
+                  <FormItem className="mb-6">
+                    <Label>Website</Label>
+                    <FormControl>
+                      <Input
+                        type="text"
+                        placeholder="https://yourwebsite.com"
+                        {...field}
+                        value={field.value ?? ""}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="twitter"
+                render={({ field }) => (
+                  <FormItem className="mb-6">
+                    <Label>Twitter</Label>
+                    <FormControl>
+                      <Input
+                        type="text"
+                        placeholder="https://twitter.com/account"
+                        {...field}
+                        value={field.value ?? ""}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="telegram"
+                render={({ field }) => (
+                  <FormItem className="mb-6">
+                    <Label>Telegram</Label>
+                    <FormControl>
+                      <Input
+                        type="text"
+                        placeholder="https://t.me/channel"
+                        {...field}
+                        value={field.value ?? ""}
+                      />
+                    </FormControl>
+                    <FormMessage />
                   </FormItem>
                 )}
               />
             </div>
+
+            <FormField
+              control={form.control}
+              name="isAdvertised"
+              render={({ field }) => (
+                <FormItem className="mb-6">
+                  <div className="flex flex-col space-y-2">
+                    <Label>ADVERTISE PRESALE</Label>
+                    <FormDescription>
+                      By enabling this you will be redirected to pay for a
+                      presale advertisement
+                    </FormDescription>
+                    <FormControl>
+                      <Switch
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                        className="ml-2"
+                      />
+                    </FormControl>
+                  </div>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           </div>
-
-          <FormField
-            control={form.control}
-            name="website"
-            render={({ field }) => (
-              <FormItem className="mb-6">
-                <Label>Website</Label>
-                <FormControl>
-                  <Input type="url" {...field} placeholder="Website link" />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="twitter"
-            render={({ field }) => (
-              <FormItem className="mb-6">
-                <Label>Twitter</Label>
-                <FormControl>
-                  <Input type="url" {...field} placeholder="Twitter link" />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="telegram"
-            render={({ field }) => (
-              <FormItem className="mb-6">
-                <Label>Telegram</Label>
-                <FormControl>
-                  <Input type="url" {...field} placeholder="Telegram link" />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="isAdvertised"
-            render={({ field }) => (
-              <FormItem className="mb-6">
-                <div className="flex flex-col space-y-2">
-                  <Label>Advertise Token</Label>
-                  <FormControl>
-                    <Switch
-                      checked={field.value}
-                      onCheckedChange={field.onChange}
-                      className="ml-2"
-                    />
-                  </FormControl>
-                </div>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
 
           <button
             className="p-[3px] relative"
