@@ -15,7 +15,7 @@ interface RequestBody {
 
 const requestBody: RequestBody = {
   local_price: {
-    amount: "299",
+    amount: "1",
     currency: "USD",
   },
   pricing_type: "fixed_price",
