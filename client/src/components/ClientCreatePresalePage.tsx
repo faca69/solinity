@@ -116,6 +116,8 @@ export default function ClientCreatePresalePage() {
     // mutation.mutate(data);
     if (hostedUrl && data.isAdvertised) {
       // Redirect to the hosted URL for advertisement payment
+      mutation.mutate(data);
+
       window.location.href = hostedUrl;
     } else {
       // Proceed with the mutation if not advertised or if it's off
