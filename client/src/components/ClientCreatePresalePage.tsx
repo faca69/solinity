@@ -113,7 +113,14 @@ export default function ClientCreatePresalePage() {
   if (mutation.isPending) return <Spinner />;
 
   const handleSubmit = async (data: z.infer<typeof formSchema>) => {
-    mutation.mutate(data);
+    // mutation.mutate(data);
+    if (hostedUrl && data.isAdvertised) {
+      // Redirect to the hosted URL for advertisement payment
+      window.location.href = hostedUrl;
+    } else {
+      // Proceed with the mutation if not advertised or if it's off
+      mutation.mutate(data);
+    }
   };
   return (
     <div className="px-10 flex flex-col items-center ">
@@ -124,7 +131,7 @@ export default function ClientCreatePresalePage() {
           onSubmit={form.handleSubmit(handleSubmit)}
           className="p-8 mb-10  rounded-2xl bg-gradient-to-br from-gray-900/60 to-transparent flex flex-col h-full shadow-emerald-700/70 shadow-inner w-full"
         >
-          <div className="  grid grid-cols-1 gap-x-10 lg:grid-cols-2 ">
+          <div className="grid grid-cols-1 gap-x-10 lg:grid-cols-2 ">
             <div>
               <FormField
                 control={form.control}
@@ -432,7 +439,7 @@ export default function ClientCreatePresalePage() {
             <button
               className="p-[3px] relative"
               type="submit"
-              onClick={handleClick}
+              // onClick={handleClick}
               disabled={!hostedUrl}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-emerald-700 rounded-lg " />
