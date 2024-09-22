@@ -114,10 +114,8 @@ export default function ClientCreatePresalePage() {
 
   const handleSubmit = async (data: z.infer<typeof formSchema>) => {
     if (!data.isAdvertised) {
-      // If not advertised, just submit the data
       await mutation.mutateAsync(data);
     } else {
-      // If advertised, also handle the charge
       await handleClick();
     }
   };
@@ -442,8 +440,8 @@ export default function ClientCreatePresalePage() {
             type="submit"
             onClick={(e) => {
               if (form.watch("isAdvertised")) {
-                e.preventDefault(); // Prevent the default form submission
-                handleClick(); // Call handleClick only
+                e.preventDefault();
+                handleClick();
               }
             }}
           >
