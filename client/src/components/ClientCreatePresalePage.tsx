@@ -54,11 +54,11 @@ export default function ClientCreatePresalePage() {
     fetchChargeData();
   }, []);
 
-  const handleClick = () => {
-    if (hostedUrl) {
-      window.location.href = hostedUrl;
-    }
-  };
+  // const handleClick = () => {
+  //   if (hostedUrl) {
+  //     window.location.href = hostedUrl;
+  //   }
+  // };
 
   const router = useRouter();
 
