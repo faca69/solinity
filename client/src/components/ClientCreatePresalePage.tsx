@@ -113,7 +113,13 @@ export default function ClientCreatePresalePage() {
   };
 
   const handleSubmit = async (data: z.infer<typeof formSchema>) => {
-    mutation.mutate(data);
+    if (!data.isAdvertised) {
+      // If not advertised, just submit the data
+      await mutation.mutateAsync(data);
+    } else {
+      // If advertised, also handle the charge
+      await handleClick();
+    }
   };
 
   if (mutation.isPending) return <Spinner />;
@@ -434,9 +440,14 @@ export default function ClientCreatePresalePage() {
           <button
             className="p-[3px] relative"
             type="submit"
-            onClick={form.watch("isAdvertised") ? handleClick : undefined}
+            onClick={(e) => {
+              if (form.watch("isAdvertised")) {
+                e.preventDefault(); // Prevent the default form submission
+                handleClick(); // Call handleClick only
+              }
+            }}
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-emerald-700 rounded-lg " />
+            <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-emerald-700 rounded-lg" />
             <div className="px-8 py-2 bg-black rounded-[6px] relative group transition duration-200 text-white hover:bg-transparent font-bold w-full">
               Create Presale
             </div>
