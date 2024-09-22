@@ -163,7 +163,7 @@ export default function AdvertisePage() {
           <AccordionItem value="item-5">
             <AccordionTrigger>How much does it cost?</AccordionTrigger>
             <AccordionContent>
-              The advertise option costs $399.
+              The advertise option costs $299.
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-6">
