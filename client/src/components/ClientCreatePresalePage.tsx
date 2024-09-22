@@ -38,6 +38,7 @@ import CustomHeadingOne from "./CustomHeadingOne";
 
 export default function ClientCreatePresalePage() {
   const [hostedUrl, setHostedUrl] = useState("");
+  const router = useRouter();
 
   useEffect(() => {
     const fetchChargeData = async () => {
@@ -53,34 +54,6 @@ export default function ClientCreatePresalePage() {
 
     fetchChargeData();
   }, []);
-
-  // const handleClick = () => {
-  //   if (hostedUrl) {
-  //     window.location.href = hostedUrl;
-  //   }
-  // };
-
-  const router = useRouter();
-
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: "",
-      description: "",
-      image: "",
-      symbol: "",
-      totalSupply: 0,
-      revokeMintAuthority: false,
-      supplyBurned: 0,
-      useOfFunds: "",
-      solanaAddress: "",
-      releaseDate: new Date(),
-      isAdvertised: false,
-      website: "",
-      twitter: "",
-      telegram: "",
-    },
-  });
 
   const mutation = useMutation({
     mutationFn: async (newToken: z.infer<typeof formSchema>) => {
@@ -102,38 +75,59 @@ export default function ClientCreatePresalePage() {
       const data = await response.json();
       return data;
     },
-    onSuccess: () => {
-      router.push("/tokens");
+    onSuccess: (data, variables) => {
+      if (!variables.isAdvertised) {
+        router.push("/tokens");
+      }
     },
     onError: (error: Error) => {
       console.error(error);
     },
   });
 
-  if (mutation.isPending) return <Spinner />;
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      description: "",
+      image: "",
+      symbol: "",
+      totalSupply: 0,
+      revokeMintAuthority: false,
+      supplyBurned: 0,
+      useOfFunds: "",
+      solanaAddress: "",
+      releaseDate: new Date(),
+      isAdvertised: false,
+      website: "",
+      twitter: "",
+      telegram: "",
+    },
+  });
 
-  const handleSubmit = async (data: z.infer<typeof formSchema>) => {
-    // mutation.mutate(data);
-    if (hostedUrl && data.isAdvertised) {
-      // Redirect to the hosted URL for advertisement payment
-      mutation.mutate(data);
-
+  const handleClick = async () => {
+    if (hostedUrl) {
+      await mutation.mutateAsync(form.getValues());
       window.location.href = hostedUrl;
-    } else {
-      // Proceed with the mutation if not advertised or if it's off
-      mutation.mutate(data);
     }
   };
+
+  const handleSubmit = async (data: z.infer<typeof formSchema>) => {
+    mutation.mutate(data);
+  };
+
+  if (mutation.isPending) return <Spinner />;
+
   return (
-    <div className="px-10 flex flex-col items-center ">
+    <div className="px-10 flex flex-col items-center">
       <CustomHeadingOne>Create Presale</CustomHeadingOne>
 
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(handleSubmit)}
-          className="p-8 mb-10  rounded-2xl bg-gradient-to-br from-gray-900/60 to-transparent flex flex-col h-full shadow-emerald-700/70 shadow-inner w-full"
+          className="p-8 mb-10 rounded-2xl bg-gradient-to-br from-gray-900/60 to-transparent flex flex-col h-full shadow-emerald-700/70 shadow-inner w-full"
         >
-          <div className="grid grid-cols-1 gap-x-10 lg:grid-cols-2 ">
+          <div className="grid grid-cols-1 gap-x-10 lg:grid-cols-2">
             <div>
               <FormField
                 control={form.control}
@@ -332,131 +326,106 @@ export default function ClientCreatePresalePage() {
                           </Button>
                         </FormControl>
                       </PopoverTrigger>
-                      <PopoverContent className="w-auto p-0" align="center">
+                      <PopoverContent className="w-auto p-0">
                         <Calendar
                           mode="single"
                           selected={field.value}
-                          onSelect={field.onChange}
-                          disabled={(date) => date < new Date()}
+                          onSelect={(date) => {
+                            if (date) field.onChange(date);
+                          }}
                           initialFocus
                         />
-
-                        <div className="p3 border-t border-border">
-                          <TimePicker
-                            date={field.value}
-                            setDate={field.onChange}
-                          />
-                        </div>
+                        <TimePicker
+                          selected={field.value}
+                          onChange={(time) => {
+                            if (field.value) {
+                              const newDate = new Date(field.value);
+                              newDate.setHours(time.getHours());
+                              newDate.setMinutes(time.getMinutes());
+                              field.onChange(newDate);
+                            }
+                          }}
+                        />
                       </PopoverContent>
                     </Popover>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="website"
-                render={({ field }) => (
-                  <FormItem className="mb-6">
-                    <Label>Website</Label>
-                    <FormControl>
-                      <Input
-                        type="text"
-                        placeholder="https://yourwebsite.com"
-                        {...field}
-                        value={field.value ?? ""}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="twitter"
-                render={({ field }) => (
-                  <FormItem className="mb-6">
-                    <Label>Twitter</Label>
-                    <FormControl>
-                      <Input
-                        type="text"
-                        placeholder="https://twitter.com/account"
-                        {...field}
-                        value={field.value ?? ""}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="telegram"
-                render={({ field }) => (
-                  <FormItem className="mb-6">
-                    <Label>Telegram</Label>
-                    <FormControl>
-                      <Input
-                        type="text"
-                        placeholder="https://t.me/channel"
-                        {...field}
-                        value={field.value ?? ""}
-                      />
-                    </FormControl>
-                    <FormMessage />
                   </FormItem>
                 )}
               />
             </div>
-
-            <FormField
-              control={form.control}
-              name="isAdvertised"
-              render={({ field }) => (
-                <FormItem className="mb-6">
-                  <div className="flex flex-col space-y-2">
-                    <Label>ADVERTISE PRESALE</Label>
-                    <FormDescription>
-                      By enabling this you will be redirected to pay for a
-                      presale advertisement
-                    </FormDescription>
-                    <FormControl>
-                      <Switch
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                        className="ml-2"
-                      />
-                    </FormControl>
-                  </div>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
           </div>
 
-          {form.watch("isAdvertised") ? (
-            <button
-              className="p-[3px] relative"
-              type="submit"
-              // onClick={handleClick}
-              disabled={!hostedUrl}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-emerald-700 rounded-lg " />
-              <div className="px-8 py-2 bg-black rounded-[6px] relative group transition duration-200 text-white hover:bg-transparent font-bold w-full">
-                Create Presale
-              </div>
-            </button>
-          ) : (
-            <button className="p-[3px] relative" type="submit">
-              <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-emerald-700 rounded-lg " />
-              <div className="px-8 py-2 bg-black rounded-[6px] relative group transition duration-200 text-white hover:bg-transparent font-bold w-full">
-                Create Presale
-              </div>
-            </button>
-          )}
+          <FormField
+            control={form.control}
+            name="website"
+            render={({ field }) => (
+              <FormItem className="mb-6">
+                <Label>Website</Label>
+                <FormControl>
+                  <Input type="url" {...field} placeholder="Website link" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="twitter"
+            render={({ field }) => (
+              <FormItem className="mb-6">
+                <Label>Twitter</Label>
+                <FormControl>
+                  <Input type="url" {...field} placeholder="Twitter link" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="telegram"
+            render={({ field }) => (
+              <FormItem className="mb-6">
+                <Label>Telegram</Label>
+                <FormControl>
+                  <Input type="url" {...field} placeholder="Telegram link" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="isAdvertised"
+            render={({ field }) => (
+              <FormItem className="mb-6">
+                <div className="flex flex-col space-y-2">
+                  <Label>Advertise Token</Label>
+                  <FormControl>
+                    <Switch
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                      className="ml-2"
+                    />
+                  </FormControl>
+                </div>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <button
+            className="p-[3px] relative"
+            type="submit"
+            onClick={form.watch("isAdvertised") ? handleClick : undefined}
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-emerald-700 rounded-lg " />
+            <div className="px-8 py-2 bg-black rounded-[6px] relative group transition duration-200 text-white hover:bg-transparent font-bold w-full">
+              Create Presale
+            </div>
+          </button>
         </form>
       </Form>
     </div>
