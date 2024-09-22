@@ -16,7 +16,8 @@ export const metadata: Metadata = {
     template: "%s | Solinity",
     default: "Solinity",
   },
-  description: "Presale website for solana tokens",
+  description:
+    "Discover and participate in presales for the latest Solana tokens. Join the vibrant community of crypto enthusiasts and stay ahead in the world of digital assets.",
   twitter: {
     card: "summary_large_image",
   },

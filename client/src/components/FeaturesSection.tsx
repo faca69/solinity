@@ -30,27 +30,29 @@ export function FeaturesSection() {
   ];
 
   return (
-    <>
+    <section className="pb-16">
       <motion.h2
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.1 }}
         viewport={{ once: true }}
-        className="text-[42px] sm:text-[65px] font-semibold  bg-clip-text text-transparent bg-gradient-to-b from-gray-100 to-gray-400 py-10 sm:py-20"
+        className="text-[42px] sm:text-[65px] font-semibold bg-clip-text text-transparent bg-gradient-to-b from-gray-100 to-gray-400 py-10 sm:py-20"
       >
         Features
       </motion.h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mx-auto gap-[55px] pb-16">
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mx-auto gap-[55px]">
         {features.map((feature, index) => (
-          <FeatureCard
-            key={index}
-            index={index}
-            icon={feature.icon}
-            title={feature.title}
-            description={feature.description}
-          />
+          <article key={index} className="flex flex-col items-center">
+            <FeatureCard
+              index={index}
+              icon={feature.icon}
+              title={feature.title}
+              description={feature.description}
+            />
+          </article>
         ))}
       </div>
-    </>
+    </section>
   );
 }

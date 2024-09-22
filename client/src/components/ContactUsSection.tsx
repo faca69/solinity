@@ -4,16 +4,16 @@ import { motion } from "framer-motion";
 
 export default function ContactUsSection() {
   return (
-    <>
-      <motion.h6
+    <section className="pb-16">
+      <motion.h2
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.1 }}
         viewport={{ once: true }}
-        className="text-[42px]  sm:text-[65px] font-semibold  bg-clip-text text-transparent bg-gradient-to-b from-gray-100 to-gray-400 py-10 sm:py-20 "
+        className="text-[42px] sm:text-[65px] font-semibold bg-clip-text text-transparent bg-gradient-to-b from-gray-100 to-gray-400 py-10 sm:py-20"
       >
         Contact Us
-      </motion.h6>
+      </motion.h2>
 
       <motion.div
         initial={{ opacity: 0, y: 50 }}
@@ -23,7 +23,7 @@ export default function ContactUsSection() {
         className="pb-16"
       >
         <form
-          className="flex flex-col justify-center max-w-screen-md mx-auto p-8 bg-gradient-to-br from-gray-900/60 to-transparent  shadow-emerald-800/40 shadow-inner rounded-xl text-white space-y-6 "
+          className="flex flex-col justify-center max-w-screen-md mx-auto p-8 bg-gradient-to-br from-gray-900/60 to-transparent shadow-emerald-800/40 shadow-inner rounded-xl text-white space-y-6"
           action="https://formspree.io/f/xanwvgbw"
           method="POST"
         >
@@ -51,14 +51,14 @@ export default function ContactUsSection() {
               required
             ></textarea>
           </label>
-          <button className="p-[3px] relative " type="submit">
-            <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-emerald-700 rounded-lg " />
-            <div className="px-8 py-2  bg-[#151516] rounded-[6px]  relative group transition duration-200 text-white hover:bg-transparent font-bold w-full">
+          <button className="p-[3px] relative" type="submit">
+            <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-emerald-700 rounded-lg" />
+            <div className="px-8 py-2 bg-[#151516] rounded-[6px] relative group transition duration-200 text-white hover:bg-transparent font-bold w-full">
               Send Message
             </div>
           </button>
         </form>
       </motion.div>
-    </>
+    </section>
   );
 }

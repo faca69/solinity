@@ -34,7 +34,7 @@ export default function RoadmapSection() {
     },
   ];
   return (
-    <>
+    <section>
       <motion.h3
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -55,6 +55,6 @@ export default function RoadmapSection() {
           />
         ))}
       </div>
-    </>
+    </section>
   );
 }
