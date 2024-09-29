@@ -12,7 +12,7 @@ export default function HeroSection() {
         transition={{ duration: 0.5, delay: 0.1 }}
         viewport={{ once: true }}
         className="bg-clip-text text-transparent bg-gradient-to-b from-emerald-300 to-emerald-700 font-bold 
-        text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[200px] 
+        text-6xl sm:text-9xl md:text-[140px] lg:text-[166px] xl:text-[200px] 
         py-4"
       >
         Solinity
@@ -34,10 +34,10 @@ export default function HeroSection() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.5 }}
         viewport={{ once: true }}
-        className="flex flex-col sm:flex-row gap-5 justify-center items-center"
+        className="flex  sm:flex-row gap-5 justify-center items-center "
       >
         <Link href="/tokens">
-          <button className="bg-gradient-to-b from-emerald-300 to-emerald-700 rounded-lg px-8 py-4 text-xl font-semibold relative group transition duration-200 text-gray-100 ">
+          <button className="bg-gradient-to-b from-emerald-300 to-emerald-700 rounded-lg  px-3 md:px-8 py-4 text-base md:text-xl font-semibold relative group transition duration-200 text-gray-100">
             Browse Tokens
           </button>
         </Link>
@@ -45,7 +45,7 @@ export default function HeroSection() {
         <Link href="/create-presale">
           <button className="p-[3px] relative">
             <div className="absolute inset-0 bg-gradient-to-b from-emerald-300 to-emerald-700 rounded-lg" />
-            <div className="px-8 py-[13px] bg-black rounded-[6px] text-xl font-semibold relative group transition duration-200 text-gray-100 hover:bg-transparent">
+            <div className=" py-[13px] bg-black rounded-[6px] px-3 md:px-8 text-base md:text-xl font-semibold relative group transition duration-200 text-gray-100 hover:bg-transparent">
               Create Presale
             </div>
           </button>
