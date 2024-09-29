@@ -30,7 +30,7 @@ const payload: RequestInit = {
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",
-    "X-CC-Api-Key": process.env.COMMERCE_API_KEY || "",
+    "X-CC-Api-Key": process.env.NEXT_PUBLIC_COMMERCE_API_KEY || "",
   },
   body: JSON.stringify(requestBody),
 };
