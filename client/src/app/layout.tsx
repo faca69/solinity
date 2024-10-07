@@ -5,11 +5,9 @@ import TanstackProvider from "../../providers/TanstackProvider";
 import Footer from "@/components/Footer";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { GeistSans } from "geist/font/sans";
 
-import { Inter } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
@@ -31,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} antialiased max-w-screen-2xl mx-auto bg-black lg:bg-grid-small-gray-800 text-white flex flex-col overflow-x-hidden`}
+        className={`${GeistSans.className} antialiased max-w-screen-2xl mx-auto bg-black lg:bg-grid-small-gray-800 text-white flex flex-col overflow-x-hidden`}
       >
         <TanstackProvider>
           <Navbar />
