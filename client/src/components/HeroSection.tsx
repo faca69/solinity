@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 export default function HeroSection() {
   return (
     <section className="py-24 sm:py-40">
-      <div className="bg-emerald-600/80 md:translate-x-[400px]  lg:translate-x-[500px]  sm:translate-x-[200px] h-[400px] w-[400px] blur-[300px] absolute translate-x-[50px]  -z-10"></div>
+      {/* <div className="bg-emerald-600/80 md:translate-x-[400px]  lg:translate-x-[500px]  sm:translate-x-[200px] h-[400px] w-[400px] blur-[300px] absolute translate-x-[50px]  -z-10"></div> */}
 
       <motion.h1
         initial={{ opacity: 0, y: -20 }}

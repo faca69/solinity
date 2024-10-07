@@ -31,15 +31,17 @@ export default function RootLayout({
       <body
         className={`${GeistSans.className} antialiased max-w-screen-2xl mx-auto bg-black lg:bg-grid-small-gray-800 text-white flex flex-col overflow-x-hidden`}
       >
-        <TanstackProvider>
-          <Navbar />
+        <main className="px-10 flex flex-col text-center justify-center text-white ">
+          <TanstackProvider>
+            <Navbar />
 
-          {children}
-          <Toaster />
-          <Footer />
-          <Analytics />
-          <SpeedInsights />
-        </TanstackProvider>
+            {children}
+            <Toaster />
+            <Footer />
+            <Analytics />
+            <SpeedInsights />
+          </TanstackProvider>
+        </main>
       </body>
     </html>
   );

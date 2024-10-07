@@ -6,7 +6,7 @@ import RoadmapSection from "@/components/RoadmapSection";
 
 export default function HomePage() {
   return (
-    <main className="px-10 flex flex-col text-center justify-center text-white ">
+    <>
       <HeroSection />
 
       <FeaturesSection />
@@ -16,6 +16,6 @@ export default function HomePage() {
       <RoadmapSection />
 
       <ContactUsSection />
-    </main>
+    </>
   );
 }
