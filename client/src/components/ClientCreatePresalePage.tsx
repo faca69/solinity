@@ -138,7 +138,7 @@ export default function ClientCreatePresalePage() {
                 name="name"
                 render={({ field }) => (
                   <FormItem className="mb-6">
-                    <Label>Name</Label>
+                    <Label className=" block text-left">Name</Label>
                     <FormControl>
                       <Input
                         type="text"
@@ -156,7 +156,7 @@ export default function ClientCreatePresalePage() {
                 name="symbol"
                 render={({ field }) => (
                   <FormItem className="mb-6">
-                    <Label>Symbol</Label>
+                    <Label className=" block text-left">Symbol</Label>
                     <FormControl>
                       <Input
                         type="text"
@@ -174,7 +174,7 @@ export default function ClientCreatePresalePage() {
                 name="image"
                 render={({ field }) => (
                   <FormItem className="mb-6">
-                    <Label>Image</Label>
+                    <Label className=" block text-left">Image</Label>
                     <FormControl>
                       <Input
                         type="file"
@@ -193,7 +193,7 @@ export default function ClientCreatePresalePage() {
                 name="description"
                 render={({ field }) => (
                   <FormItem className="mb-6">
-                    <Label>Description</Label>
+                    <Label className=" block text-left">Description</Label>
                     <FormControl>
                       <Textarea
                         rows={5}
@@ -211,7 +211,7 @@ export default function ClientCreatePresalePage() {
                 name="totalSupply"
                 render={({ field }) => (
                   <FormItem className="mb-6">
-                    <Label>Total Supply</Label>
+                    <Label className=" block text-left">Total Supply</Label>
                     <FormControl>
                       <Input
                         type="number"
@@ -233,7 +233,7 @@ export default function ClientCreatePresalePage() {
                 name="supplyBurned"
                 render={({ field }) => (
                   <FormItem className="mb-6">
-                    <Label>Supply Burned</Label>
+                    <Label className=" block text-left">Supply Burned</Label>
                     <FormControl>
                       <Input
                         type="number"
@@ -249,6 +249,29 @@ export default function ClientCreatePresalePage() {
                   </FormItem>
                 )}
               />
+
+              <FormField
+                control={form.control}
+                name="isAdvertised"
+                render={({ field }) => (
+                  <FormItem className="mb-6">
+                    <div className="flex flex-col space-y-2">
+                      <Label className=" block text-left text-emerald-200">
+                        ADVERTISE PRESALE
+                      </Label>
+
+                      <FormControl>
+                        <Switch
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                          className="ml-2"
+                        />
+                      </FormControl>
+                    </div>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
             </div>
 
             <div>
@@ -257,7 +280,7 @@ export default function ClientCreatePresalePage() {
                 name="useOfFunds"
                 render={({ field }) => (
                   <FormItem className="mb-6">
-                    <Label>Use Of Funds</Label>
+                    <Label className=" block text-left">Use Of Funds</Label>
                     <FormControl>
                       <Textarea
                         placeholder="How the funds for marketing are going to be used"
@@ -275,7 +298,9 @@ export default function ClientCreatePresalePage() {
                 name="solanaAddress"
                 render={({ field }) => (
                   <FormItem className="mb-6">
-                    <Label>Solana Presale Address</Label>
+                    <Label className=" block text-left">
+                      Solana Presale Address
+                    </Label>
                     <FormControl>
                       <Input
                         type="text"
@@ -294,7 +319,9 @@ export default function ClientCreatePresalePage() {
                 render={({ field }) => (
                   <FormItem className="mb-6">
                     <div className="flex flex-col space-y-2">
-                      <Label>Revoke Mint Authority</Label>
+                      <Label className=" block text-left">
+                        Revoke Mint Authority
+                      </Label>
                       <FormControl>
                         <Switch
                           checked={field.value}
@@ -313,7 +340,9 @@ export default function ClientCreatePresalePage() {
                 name="releaseDate"
                 render={({ field }) => (
                   <FormItem className="mb-6">
-                    <Label className="text-white">Release Date</Label>
+                    <Label className="text-white text-left block">
+                      Release Date
+                    </Label>
                     <Popover>
                       <PopoverTrigger asChild>
                         <FormControl>
@@ -357,7 +386,7 @@ export default function ClientCreatePresalePage() {
                 name="website"
                 render={({ field }) => (
                   <FormItem className="mb-6">
-                    <Label>Website</Label>
+                    <Label className=" block text-left">Website</Label>
                     <FormControl>
                       <Input
                         type="text"
@@ -376,7 +405,7 @@ export default function ClientCreatePresalePage() {
                 name="twitter"
                 render={({ field }) => (
                   <FormItem className="mb-6">
-                    <Label>Twitter</Label>
+                    <Label className=" block text-left">Twitter</Label>
                     <FormControl>
                       <Input
                         type="text"
@@ -395,7 +424,7 @@ export default function ClientCreatePresalePage() {
                 name="telegram"
                 render={({ field }) => (
                   <FormItem className="mb-6">
-                    <Label>Telegram</Label>
+                    <Label className=" block text-left">Telegram</Label>
                     <FormControl>
                       <Input
                         type="text"
@@ -409,30 +438,6 @@ export default function ClientCreatePresalePage() {
                 )}
               />
             </div>
-
-            <FormField
-              control={form.control}
-              name="isAdvertised"
-              render={({ field }) => (
-                <FormItem className="mb-6">
-                  <div className="flex flex-col space-y-2">
-                    <Label>ADVERTISE PRESALE</Label>
-                    <FormDescription>
-                      By enabling this you will be redirected to pay for a
-                      presale advertisement
-                    </FormDescription>
-                    <FormControl>
-                      <Switch
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                        className="ml-2"
-                      />
-                    </FormControl>
-                  </div>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
           </div>
 
           <button
