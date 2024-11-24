@@ -6,7 +6,6 @@ import { Token } from "@/common/token.interface";
 import Image from "next/image";
 import ReactCountdown from "react-countdown";
 import SingleTokenCountdownRenderer from "./SingleTokenCountdownRenderer";
-import TokenNotFoundPage from "@/app/tokens/[id]/not-found";
 import { useToast } from "@/hooks/use-toast";
 import { IconBrandTelegram, IconBrandX } from "@tabler/icons-react";
 import { Globe } from "lucide-react";
