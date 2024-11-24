@@ -11,6 +11,7 @@ import { useToast } from "@/hooks/use-toast";
 import { IconBrandTelegram, IconBrandX } from "@tabler/icons-react";
 import { Globe } from "lucide-react";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 interface Props {
   params: {
@@ -34,7 +35,7 @@ export default function ClientSIngleTokenPage({ params: { id } }: Props) {
   });
 
   if (isLoading) return <Spinner />;
-  if (!data) return <TokenNotFoundPage />;
+  if (!data) throw notFound();
   return (
     <div className="min-h-screen flex flex-col text-white px-10 ">
       <div className="">

@@ -9,13 +9,13 @@ export default function TokenNotFoundPage() {
       </header>
 
       <nav>
-        <Link href="/tokens">
-          <a className="p-[3px] relative">
+        <Link href="/tokens" className="p-[3px] relative">
+          <div className="p-[3px] relative">
             <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-emerald-700 rounded-lg" />
             <div className="px-8 py-2 bg-black rounded-[6px] relative group transition duration-200 text-white hover:bg-transparent">
               Go To Tokens
             </div>
-          </a>
+          </div>
         </Link>
       </nav>
     </main>
